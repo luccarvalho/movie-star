@@ -1,5 +1,7 @@
 # movie-star
 
+> :construction: **Projeto em construção!** :construction:
+
 ## :dart: Objetivo do projeto:
 
 Criar uma página colaborativa de avaliações de filmes, onde cada usuário cadastrado pode indicar um filme que gostou, fazer reviews e dar notas para outros filmes indicados por outros usuários.

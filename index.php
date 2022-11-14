@@ -38,9 +38,41 @@ require_once("db.php");
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <div class="collapse navbar-collapse" id="navbar"></div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar / Cadastrar</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
+    <div id="main-container" class="container-fluid">
+        <h1>Corpo do site</h1>
+    </div>
+    <footer id="footer">
+        <div class="social-container">
+            <ul>
+                <li>
+                    <a href="#"><i class="fab fa-facebook-square"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div id="footer-links-container">
+            <ul>
+                <li><a href="#">Adicionar filme</a></li>
+                <li><a href="#">Adicionar crítica</a></li>
+                <li><a href="#">Entrar / Registrar</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2022 Lucas Carvalho</p>
+    </footer>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.js" integrity="sha512-kOoVKvf8oEDRxKl9FLXaT5RpehiXUPGXI4p/n8uKNP8Tml0v31VnpAZNbpMVAOrb82GCKeEBNslNnbOIZ89ZeQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

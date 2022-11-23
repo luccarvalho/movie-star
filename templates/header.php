@@ -2,8 +2,16 @@
 
 require_once("globals.php");
 require_once("db.php");
+require_once("models/Message.php");
 
-$flassMessage = [];
+$message = new Message($BASE_URL);
+
+$flassMessage = $message->getMessage();
+
+if (!empty($flassMessage["msg"])) {
+    // *Limpar a mensagem
+    $message->clearMessage();
+}
 
 ?>
 
@@ -31,7 +39,7 @@ $flassMessage = [];
                 <img src="<?= $BASE_URL ?>img/logo.svg" alt="MovieStar" id="logo">
                 <span id="moviestar-title">MovieStar</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Togglenavigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">

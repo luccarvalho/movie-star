@@ -10,10 +10,10 @@ $message = new Message($BASE_URL);
 
 $userDao = new UserDAO($conn, $BASE_URL);
 
-// *Resgata o tipo do formulário*
+// Resgata o tipo do formulário
 $type = filter_input(INPUT_POST, "type");
 
-// *Verifica o tipo do formulário*
+// Verifica o tipo do formulário
 if ($type === "register") {
     
     $name = filter_input(INPUT_POST, "name");
@@ -22,30 +22,44 @@ if ($type === "register") {
     $password = filter_input(INPUT_POST, "password");
     $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
 
-    // *Verificação de dados mínimos*
+    // Verificação de dados mínimos
     if ($name && $lastname && $email && $password) {
 
-        // *Verifica se as senhas coincidem*
+        // Verifica se as senhas coincidem
         if($password === $confirmpassword) {
 
-            // *Verifica se o e-mail já está cadastrado no sistema*
+            // Verifica se o e-mail já está cadastrado no sistema
             if($userDao->findByEmail($email) === false) {
 
-                echo "Nenhum usuário foi encontrado.";
+                $user = new User();
+
+                // Criação de token e senha
+                $userToken = $user->generateToken();
+                $finalPassword = $user->generatePassword($password);
+
+                $user->name = $name;
+                $user->lastname = $lastname;
+                $user->email = $email;
+                $user->password = $finalPassword;
+                $user->token = $userToken;
+
+                $auth = true;
+
+                $userDao->create($user, $auth);
 
             } else {
-                // *Enviar mensagem de erro, e-mail já existe no sistema*
+                // Enviar mensagem de erro, e-mail já existe no sistema
                 $message->setMessage("E-mail já cadastrado, tente outro.", "error", "back");
             }
 
         } else {
-            // *Enviar mensagem de erro, de senhas divergentes*
+            // Enviar mensagem de erro, de senhas divergentes
             $message->setMessage("As senhas não são iguais.", "error", "back");
         }
     
     } else {
         
-        // *Enviar mensagem de erro, em caso de dados faltantes*
+        // Enviar mensagem de erro, em caso de dados faltantes
         $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
     }
 

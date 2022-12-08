@@ -39,23 +39,26 @@ if($type === "update") {
         
         $image = $_FILES["image"];
         $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
-        $jpgArray = ["image/jpeg", "image/jpg"];
+        // $jpgArray = ["image/jpeg", "image/jpg"];
+
+        // Pegando extensão do arquivo
+        $ext = strtolower(substr($image["name"], -4));
 
         // Checagem de tipo de imagem
         if(in_array($image["type"], $imageTypes)) {
 
             // Checar se o arquivo é jpg
-            if(in_array($image, $jpgArray)) {
+            if($ext == ".jpg") {
 
                 $imageFile = imagecreatefromjpeg($image["tmp_name"]);
 
             // Imagem é png
-            } else {
+            } else if($ext == ".png") {
 
                 $imageFile = imagecreatefrompng($image["tmp_name"]);
             }
 
-            $imageName = $user->imageGenerateName();
+            $imageName = $user->imageGenerateName($ext);
 
             imagejpeg($imageFile, "./img/users/" . $imageName, 100);
 

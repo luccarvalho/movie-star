@@ -55,6 +55,12 @@ if($type === "update") {
                 $imageFile = imagecreatefrompng($image["tmp_name"]);
             }
 
+            $imageName = $user->imageGenerateName();
+
+            imagejpeg($imageFile, "./img/users/" . $imageName, 100);
+
+            $userData->image = $imageName;
+
         } else {
             
             $message->setMessage("Tipo inválido de imagem, insira jpg ou png!", "error", "back");

@@ -75,6 +75,17 @@ if($type === "update") {
 // Atualizar senha do usuário 
 } else if($type === "changepassword") {
 
+    // Receber dados do post
+    $password = filter_input(INPUT_POST, "password");
+    $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
+    $id = filter_input(INPUT_POST, "id");
+
+    if($password == $confirmpassword) {
+
+    } else {
+         $message->setMessage("As senhas não são iguais!", "error", "back");
+    }
+
 } else {
 
     $message->setMessage("Informações inválidas!", "error", "index.php");

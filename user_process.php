@@ -78,9 +78,23 @@ if($type === "update") {
     // Receber dados do post
     $password = filter_input(INPUT_POST, "password");
     $confirmpassword = filter_input(INPUT_POST, "confirmpassword");
-    $id = filter_input(INPUT_POST, "id");
+    
+    // Resgata dados do usuário
+    $userData = $userDao->verifyToken();
+    
+    $id = $userData->id;
 
     if($password == $confirmpassword) {
+
+        // Criar um novo objeto de usuário
+        $user = new User();
+
+        $finalPassword = $user->generatePassword($password);
+
+        $user->password = $finalPassword;
+        $user->id = $id;
+
+        $userDao->changePassword($user);
 
     } else {
          $message->setMessage("As senhas não são iguais!", "error", "back");

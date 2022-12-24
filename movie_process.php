@@ -45,20 +45,35 @@
                 // Pegando extensão do arquivo
                 $ext = strtolower(substr($image["name"], -4));
 
-                // Checar se o arquivo é jpg
-                if($ext == ".jpg") {
+                // Checagem de tipo de imagem
+                if(in_array($image["type"], $imageTypes)) {
 
-                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                    // Checar se o arquivo é jpg
+                    if($ext == ".jpg") {
 
-                // Imagem é png
-                } else if($ext == ".png") {
+                        $imageFile = imagecreatefromjpeg($image["tmp_name"]);
 
-                    $imageFile = imagecreatefrompng($image["tmp_name"]);
+                    // Imagem é png
+                    } else if($ext == ".png") {
+
+                        $imageFile = imagecreatefrompng($image["tmp_name"]);
+                    }
+
+                    // Gerando o nome da imagem
+                    $imageName = $movie->imageGenerateName($ext);
+
+                    imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
+
+                    $movie->image = $imageName;
+
+                } else {
+                
+                    $message->setMessage("Tipo inválido de imagem, insira jpg ou png!", "error", "back");
                 }
 
-                $imageName = $movie->imageGenerateName($ext);
-            
-        }
+            }
+
+            $movieDao->create($movie);
 
         } else {
             

@@ -58,6 +58,7 @@ if($type === "update") {
                 $imageFile = imagecreatefrompng($image["tmp_name"]);
             }
 
+            // Gerando o nome da imagem
             $imageName = $user->imageGenerateName($ext);
 
             imagejpeg($imageFile, "./img/users/" . $imageName, 100);

@@ -29,6 +29,11 @@
     
     }
 
+    // Checar se o filme tem imagem
+    if($movie->image == "") {
+        $movie->image = "movie_cover.jpg";
+    }
+
     // Checar se o filme é do usuário
     $userOwnsMovie = false;
 
@@ -54,6 +59,13 @@
                 <span><i class="fas fa-star"></i> 9</span>
             </p>
             <iframe src="<?= $movie->trailer ?>" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encryted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p><?= $movie->description ?></p>
+        </div>
+        <div class="col-md-4">
+            <div class="movie-image-container" style="background-image: url('<?= $BASE_URL ?>/img/movies/<?= $movie->image ?>')"></div>
+        </div>
+        <div class="offset-md-1 col-md-10" id="reviews-container">
+            <h3 id="reviews-title">Avaliações:</h3>
         </div>
     </div>
 </div>

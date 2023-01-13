@@ -82,6 +82,30 @@
             $message->setMessage("É necessário inserir ao menos o título, a descrição e a categoria!", "error", "back");
         }
 
+    } else if($type === "delete") {
+
+        // Recebe os dados do formulário
+        $id = filter_input(INPUT_POST, "id");
+
+        $movie = $movieDao->findById($id);
+
+        if($movie) {
+
+            // Verifica se o filme é do usuário
+            if($movie->users_id === $userData->id) {
+                
+                $movieDao->destroy($movie->id);
+
+            } else {
+                
+                $message->setMessage("Informações inválidas!", "error", "index.php");
+            }
+
+        } else {
+
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+        }
+    
     } else {
         
         $message->setMessage("Informações inválidas!", "error", "index.php");

@@ -158,6 +158,8 @@
                             }
 
                             // Gerando o nome da imagem
+                            $movie = new Movie();
+                            
                             $imageName = $movie->imageGenerateName($ext);
 
                             imagejpeg($imageFile, "./img/movies/" . $imageName, 100);

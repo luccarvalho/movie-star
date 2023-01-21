@@ -174,6 +174,7 @@
             $stmt->bindParam(":category", $movie->category);
             $stmt->bindParam(":trailer", $movie->trailer);
             $stmt->bindParam(":length", $movie->length);
+            $stmt->bindParam(":id", $movie->id);
 
             $stmt->execute();
 

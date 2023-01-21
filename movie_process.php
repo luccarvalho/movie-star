@@ -158,7 +158,7 @@
                             }
 
                             // Gerando o nome da imagem
-                            // $movie = new Movie();
+                            $movie = new Movie();
                             
                             $imageName = $movie->imageGenerateName($ext);
 
@@ -173,7 +173,7 @@
 
                     }
 
-                    // $movieDao->update($movieData);
+                    $movieDao->update($movieData);
                 
                 } else {
 

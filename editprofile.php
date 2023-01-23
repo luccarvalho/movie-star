@@ -13,6 +13,7 @@
     $fullName = $user->getFullName($userData);
 
     if($userData->image == "") {
+        
         $userData->image = "user.png";
     }
 

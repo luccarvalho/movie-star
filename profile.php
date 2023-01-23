@@ -25,9 +25,26 @@
         }
     
     } else {
+
+        $userData = $userDao->findById($id);
+
+        // Se não encontrar usuário
+        if(!$userData) {
+
+            $message->setMessage("Usuário não encontrado!", "error", "index.php");
+        }
         
-        $message->setMessage("Usuário não encontrado!", "error", "index.php");
     }
+
+    $fullName = $user->getFullName($userData);
+
+    if($userData->image == "") {
+        
+        $userData->image = "user.png";
+    }
+
+    // Filmes que o usuário adicionou
+    $userMovies = $movieDao->getMoviesByUserId($id);
 
 ?>
 

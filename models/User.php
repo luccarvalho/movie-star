@@ -1,7 +1,7 @@
 <?php
 
-class User
-{
+class User {
+    
     public $id;
     public $name;
     public $lastname;
@@ -28,8 +28,8 @@ class User
     }
 }
 
-interface UserDAOInterface
-{
+interface UserDAOInterface {
+    
     public function buildUser($data);
     public function create(User $user, $authUser = false);
     public function update(User $user, $redirect = true);

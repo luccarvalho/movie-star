@@ -26,6 +26,7 @@
         $rating = filter_input(INPUT_POST, "rating");
         $review = filter_input(INPUT_POST, "review");
         $movies_id = filter_input(INPUT_POST, "movies_id");
+        $users_id = $userData->id;
 
         $reviewObject = new Review();
 

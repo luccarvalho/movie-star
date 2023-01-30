@@ -29,7 +29,22 @@
             return $reviewObject;
         }
         
-        public function create(Review $review) {}
+        public function create(Review $review) {
+            
+            $stmt = $this->conn->prepare("INSERT INTO reviews (rating, reviews, movies_id, users_id) 
+            VALUES (:rating, :reviews, :movies_id, :users_id)");
+
+            $stmt->bindParam(":rating", $review->rating);
+            $stmt->bindParam(":reviews", $review->review);
+            $stmt->bindParam(":movies_id", $review->movies_id);
+            $stmt->bindParam(":users_id", $review->users_id);
+           
+            $stmt->execute();
+
+            // Mensagem de sucesso depois de adicionar filme
+            $this->message->setMessage("Crítica adicionada com sucesso!", "success", "index.php");
+        }
+        
         public function getMoviesReview($id) {}
         public function hasAlreadyReviewed($id, $userId) {}
         public function getRatings($id) {}

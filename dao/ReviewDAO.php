@@ -22,7 +22,7 @@
             
             $reviewObject->id = $data["id"];
             $reviewObject->id = $data["rating"];
-            $reviewObject->id = $data["review"];
+            $reviewObject->id = $data["reviews"];
             $reviewObject->id = $data["users_id"];
             $reviewObject->id = $data["movies_id"];
 
@@ -45,7 +45,29 @@
             $this->message->setMessage("Crítica adicionada com sucesso!", "success", "index.php");
         }
         
-        public function getMoviesReview($id) {}
+        public function getMoviesReview($id) {
+
+            $reviews = [];
+            
+            $stmt = $this->conn->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
+
+            $stmt->bindParam(":movies_id", $id);
+
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0) {
+                
+                $reviewsData = $stmt->fetchAll();
+
+                foreach($reviewsData as $review) {
+                    
+                    $reviews[] = $this->buildReview($review);
+                }
+            }
+
+            return $reviews;
+        }
+        
         public function hasAlreadyReviewed($id, $userId) {}
         public function getRatings($id) {}
     

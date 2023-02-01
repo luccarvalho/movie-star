@@ -3,8 +3,8 @@
 require_once("models/User.php");
 require_once("models/Message.php");
 
-class UserDAO implements UserDAOInterface
-{
+class UserDAO implements UserDAOInterface {
+    
     private $conn;
     private $url;
     private $message;
@@ -32,8 +32,8 @@ class UserDAO implements UserDAOInterface
         return $user;
     }
 
-    public function create(User $user, $authUser = false)
-    {
+    public function create(User $user, $authUser = false) {
+        
         $stmt = $this->conn->prepare("INSERT INTO users(name, lastname, email, password, token)
             VALUES (:name, :lastname, :email, :password, :token)");
 
@@ -51,8 +51,8 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function update(User $user, $redirect = true)
-    {
+    public function update(User $user, $redirect = true) {
+        
         $stmt = $this->conn->prepare("UPDATE users SET
             name = :name,
             lastname = :lastname,
@@ -79,8 +79,8 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function verifyToken($protected = false)
-    {
+    public function verifyToken($protected = false) {
+        
         if(!empty($_SESSION["token"])) {
 
             // Pega o token da sessão
@@ -105,8 +105,8 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function setTokenToSession($token, $redirect = true)
-    {
+    public function setTokenToSession($token, $redirect = true) {
+        
         // Salvar token na sessão
         $_SESSION["token"] = $token;
 
@@ -116,8 +116,8 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function authenticateUser($email, $password)
-    {
+    public function authenticateUser($email, $password) {
+        
         $user = $this->findByEmail($email);
 
         if($user) {
@@ -148,8 +148,8 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function findByEmail($email)
-    {
+    public function findByEmail($email) {
+        
         if($email != "") {
 
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
@@ -174,12 +174,33 @@ class UserDAO implements UserDAOInterface
         }
     }
     
-    public function findById($id)
-    {
+    public function findById($id) {
+
+        if($id != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0) {
+
+                $data = $stmt->fetch();
+                $user = $this->buildUser($data);
+
+                return $user;
+
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
     }
     
-    public function findByToken($token)
-    {
+    public function findByToken($token) {
         if($token != "") {
 
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
@@ -204,8 +225,8 @@ class UserDAO implements UserDAOInterface
         }
     }
 
-    public function destroyToken()
-    {
+    public function destroyToken() {
+        
         // Remove o token da sessão
         $_SESSION["token"] = "";
 
@@ -213,8 +234,8 @@ class UserDAO implements UserDAOInterface
         $this->message->setMessage("Conta desconectada com sucesso!", "success", "index.php");
     }
     
-    public function changePassword(User $user)
-    {
+    public function changePassword(User $user) {
+        
         $stmt = $this->conn->prepare("UPDATE users SET
             password = :password
             WHERE id = :id

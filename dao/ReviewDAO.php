@@ -21,10 +21,10 @@
             $reviewObject = new Review();
             
             $reviewObject->id = $data["id"];
-            $reviewObject->id = $data["rating"];
-            $reviewObject->id = $data["reviews"];
-            $reviewObject->id = $data["users_id"];
-            $reviewObject->id = $data["movies_id"];
+            $reviewObject->rating = $data["rating"];
+            $reviewObject->review = $data["reviews"];
+            $reviewObject->users_id = $data["users_id"];
+            $reviewObject->movies_id = $data["movies_id"];
 
             return $reviewObject;
         }
@@ -68,7 +68,7 @@
                     // Chamar dados do usuário
                     $user = $userDao->findById($reviewObject->users_id);
 
-                    $reviewObject->users_id = $user;
+                    $reviewObject->user = $user;
                     
                     $reviews[] = $reviewObject;
                 }

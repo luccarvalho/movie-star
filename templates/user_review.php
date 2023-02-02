@@ -1,8 +1,14 @@
 <?php
+
+    require_once("models/User.php");
+
+    $userModel = new User();
+
+    $fullName = $userModel->getFullName($review->user);
     
     // Checar se o filme tem imagem
-    if($review->users_id->image == "") {
-        $review->users_id->image = "user.png";
+    if($review->user->image == "") {
+        $review->user->image = "user.png";
     }
 ?>
 
@@ -13,7 +19,7 @@
         </div>
         <div class="col-md-9 author-details-container">
             <h4 class="author-name">
-                <a href="#">Lucas Teste</a>
+                <a href="#"><?= $fullName ?></a>
             </h4>
             <p><i class="fas fa-star"></i> <?= $review->rating ?></p>
         </div>

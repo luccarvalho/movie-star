@@ -120,8 +120,10 @@
             
             } else {
 
-                $rating = "Esse título ainda não foi avaliado";
+                $rating = "Não avaliado";
             }
+
+            return $rating;
         }
     
     }

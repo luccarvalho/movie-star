@@ -1,10 +1,12 @@
-# movie-star
+<h1 align="center">MovieStar</h1>
 
-## :dart: Objetivo do projeto:
+<video src="templates/capa_do_projeto/moviestar.mp4" controls title="Title"></video>
 
-Criar uma página colaborativa de avaliações de filmes, onde cada usuário cadastrado pode indicar um filme que gostou, fazer reviews e dar notas para outros filmes indicados por outros usuários.
+## Objetivo do projeto
 
-## :receipt: Descrição do projeto:
+Criar uma página colaborativa de avaliações de filmes, utilizando PHP e MySQL, onde cada usuário cadastrado pode indicar um filme que gostou, fazer reviews e dar notas para outros filmes indicados por outros usuários.
+
+## Descrição do projeto
 
 A página possui um cabeçalho com um sistema de busca por palavra chave e com uma autenticação de usuário (entrar/cadastrar).
 
@@ -22,7 +24,7 @@ Cada usuário ao se cadastrar, terá uma Bio onde poderá fazer uma breve aprese
 
 Como regra de negócio, só usuários cadastrados podem ter acesso completo a página e a todas as funcionalidades.
 
-## :heavy_check_mark: Técnologias utilizadas:
+## :heavy_check_mark: Tecnologias utilizadas
 
 - `PHP`
 - `MySQL`

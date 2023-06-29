@@ -1,6 +1,6 @@
 <h1 align="center">MovieStar</h1>
 
-<video src="templates/capa_do_projeto/moviestar.mp4" controls title="Title"></video>
+![Template MovieStar](templates/capa_do_projeto/template_moviestar.png)
 
 ## Objetivo do projeto
 

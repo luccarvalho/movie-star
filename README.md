@@ -1,6 +1,8 @@
 <h1 align="center">MovieStar</h1>
 
-![Template MovieStar](templates/capa_do_projeto/moviestar_to_readme.gif)
+<div align="center">
+  <img width="600" src="templates/capa_do_projeto/moviestar_to_readme.gif" alt="Gif de apresentação do projeto">
+</div>
 
 ## Objetivo do projeto
 
